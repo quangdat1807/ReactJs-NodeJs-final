@@ -1,7 +1,15 @@
-var express = require('express')
-var app = express()
-var cors = require('cors')
-app.use(cors());
+const express = require('express')
+const app = express()
+const path = require('path')
+
+app.use("/public", express.static(path.join(_dirname + "/public")));
+
+const PORT = process.env.PORT || 5000
+
+app.listen(PORT, () => {
+  console.log("success!");
+}
+)
 
 var mysql = require('mysql');
 
@@ -226,8 +234,3 @@ app.post('/login', function (req, res) {
     res.send(result);
   });
 })
-
-app.listen(8080, () => {
-  console.log("success!");
-}
-)
